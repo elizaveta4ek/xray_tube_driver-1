@@ -355,3 +355,19 @@ void xray::on_pushButtonFaultReset_2_clicked()
     emit US_fault_reset_standby();
     timer->start();
 }
+
+void xray::on_pushButton_Connect_clicked()
+{
+    if (ui->pushButton_Connect->isChecked()) {
+        ui->pushButton_Connect->setText("Disconnect");
+        emit US_write_settings(ui->comboBox->currentText(), 9600, QSerialPort::DataBits::Data8, QSerialPort::Parity::NoParity, QSerialPort::StopBits::OneStop, QSerialPort::FlowControl::NoFlowControl);
+        timer->setInterval(200);
+        connect(timer, SIGNAL(timeout()), tube, SLOT(U_refrash_data()));
+        timer->start();
+    }
+    else {
+        ui->pushButton_Connect->setText("Connect");
+        timer->stop();
+        emit US_disconnect_port();
+    }
+}

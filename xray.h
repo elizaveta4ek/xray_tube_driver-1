@@ -61,6 +61,7 @@ private:
 
     /*Buttons*/
     QPushButton *pushButton_XrayOn;
+    QPushButton *pushButton_Connect;
 
     /*QLCD*/
     QLCDNumber *lcdNumber_Voltage;
@@ -122,6 +123,7 @@ private slots:
     void on_pushButton_2_clicked();
     void on_test_pushButton_clicked();
     void on_pushButtonFaultReset_2_clicked();
+    void on_pushButton_Connect_clicked();
 };
 
 #endif // XRAY_H
